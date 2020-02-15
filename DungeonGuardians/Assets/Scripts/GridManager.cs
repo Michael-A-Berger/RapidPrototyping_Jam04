@@ -94,6 +94,12 @@ public class GridManager : MonoBehaviour
         return result;
     }
 
+    //Get Tiles within range
+    public List<GridTile> GetGridTilesWithinRange(GridTile tile, int range)
+    {
+        return tiles.FindAll(t => Mathf.Abs(t.gridPos.x - tile.gridPos.x) <= range && Mathf.Abs(t.gridPos.y - tile.gridPos.y) <= range);
+    }
+
     // GetGridSize()
     public Vector2Int GetGridSize()
     {
