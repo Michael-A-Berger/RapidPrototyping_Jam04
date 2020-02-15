@@ -50,8 +50,8 @@ public class GridManager : MonoBehaviour
                 }
 
                 GridTile tileScript = tile.GetComponent<GridTile>();
-                tileScript.gridPos.x = row;
-                tileScript.gridPos.y = col;
+                tileScript.gridPos.x = col;
+                tileScript.gridPos.y = row;
 
                 tiles.Add(tileScript);
 
@@ -114,9 +114,9 @@ public class GridManager : MonoBehaviour
         {
             if (Input.GetKeyDown((KeyCode)(num + 49)))
             {
-                GridTile test = GetGridTileAtPos(0, num);
+                GridTile test = GetGridTileAtPos(num, 0);
                 if (test != null)
-                    Debug.Log("canPlaceTowers (0, " + num + "):\t" + test.canPlaceTowers);
+                    Debug.Log("canPlaceTowers (" + num + ", 0):\t" + test.canPlaceTowers);
             }
         }
     }
