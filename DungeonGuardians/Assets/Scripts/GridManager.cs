@@ -94,6 +94,17 @@ public class GridManager : MonoBehaviour
         return result;
     }
 
+    public List<Enemy> GetEnemiesWithinRange(GridTile tile, int range)
+    {
+        List<GridTile> tilesInRange = GetGridTilesWithinRange(tile, range);
+        List<Enemy> allEnemiesWithinRange = new List<Enemy>();
+        foreach(GridTile eachTile in tilesInRange)
+        {
+            allEnemiesWithinRange.AddRange(eachTile.enemiesOnTile);
+        }
+        return allEnemiesWithinRange;
+    }
+
     //Get Tiles within range
     public List<GridTile> GetGridTilesWithinRange(GridTile tile, int range)
     {

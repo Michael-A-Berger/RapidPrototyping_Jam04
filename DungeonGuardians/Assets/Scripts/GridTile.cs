@@ -8,4 +8,5 @@ public class GridTile : MonoBehaviour
     public GameObject placedTower = null;
     public Vector2Int gridPos = new Vector2Int(int.MinValue, int.MinValue);
     public bool canPlaceTowers = true;
+    public List<Enemy> enemiesOnTile = new List<Enemy>();
 }
