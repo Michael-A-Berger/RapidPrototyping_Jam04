@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6187360187903725174}
   - component: {fileID: 2582691988962850814}
+  - component: {fileID: -2530275747562903586}
   m_Layer: 0
   m_Name: Player2_Tile
   m_TagString: Untagged
@@ -79,3 +80,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2530275747562903586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267844407510451787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e1f84e9b484d74ab6f42d474de7a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPos: {x: -2147483648, y: -2147483648}
+  canPlaceTowers: 1
