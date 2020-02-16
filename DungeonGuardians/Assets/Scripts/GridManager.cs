@@ -19,11 +19,16 @@ public class GridManager : MonoBehaviour
     private float tileSize = 1;
     [SerializeField]
     private List<GridTile> tiles = new List<GridTile>();
+    private List<GameObject> grid = new List<GameObject>();
+    private List<GameObject> enemyWaypoints = new List<GameObject>();
+    public List<GameObject> EnemyWaypoints { get{ return enemyWaypoints; } }
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateGrid();
+        // Manual Attempt - add to enemy waypoint list
+        GenerateEnemyWaypointList();
 
         if (debug)
             Debug_Init();
@@ -59,6 +64,22 @@ public class GridManager : MonoBehaviour
                 float posY = row * -tileSize;
 
                 tile.transform.position = new Vector2(posX, posY);
+
+                grid.Add(tile);
+
+                // Dynamic Attempt -  add to enemy waypoint list
+                // if (col % 5 == 0 && row % 2 == 0)
+                //{
+                //    enemyWaypoints.Add(tile);
+                //    Debug.Log("Column: " + col + "Row: " + row);
+                //}
+                //else if (col == 15 && row % 2 != 0)
+                //{
+                //    enemyWaypoints.Add(tile);
+                //    Debug.Log("Column: " + col + "Row: " + row);
+                //}
+
+                //// Next step need to be able to reverse the order of a row after the vertical transition tile
             }
         }
 
@@ -70,6 +91,35 @@ public class GridManager : MonoBehaviour
 
         // divided by 2 because the pivot point for tiles is in the center
         transform.position = new Vector2(-gridWidth / 2 + tileSize / 2, gridHeight / 2 - tileSize / 2);
+    }
+
+    private void GenerateEnemyWaypointList()
+    {
+        // testing points
+
+        enemyWaypoints.Add(grid[0]);
+        enemyWaypoints.Add(grid[15]);
+        enemyWaypoints.Add(grid[75]);
+
+        //enemyWaypoints.Add(grid[30]);
+        //enemyWaypoints.Add(grid[45]);
+        //enemyWaypoints.Add(grid[40]);
+        //enemyWaypoints.Add(grid[31]);
+
+        //enemyWaypoints.Add(grid[46]);
+        //enemyWaypoints.Add(grid[61]);
+        //enemyWaypoints.Add(grid[70]);
+        //enemyWaypoints.Add(grid[75]);
+
+        //enemyWaypoints.Add(grid[105]);
+        //enemyWaypoints.Add(grid[91]);
+        //enemyWaypoints.Add(grid[121]);
+        //enemyWaypoints.Add(grid[135]);
+        //enemyWaypoints.Add(grid[165]);
+        //enemyWaypoints.Add(grid[181]);
+        //enemyWaypoints.Add(grid[225]);
+        //enemyWaypoints.Add(grid[210]);
+        //enemyWaypoints.Add(grid[226]);
     }
 
     // Update is called once per frame
