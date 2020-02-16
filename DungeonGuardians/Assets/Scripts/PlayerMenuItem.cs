@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMenuItem /*: MonoBehaviour/**/
+public class PlayerMenuItem
 {
     // Delegate
     public delegate void SelectItem();

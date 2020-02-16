@@ -10,7 +10,6 @@ public class PlayerCursor : MonoBehaviour
     [Range(1,4)]
     public int playerNum = 1;
     public bool usingController = false;
-    public List<GameObject> placeableTowers;
 
     // Private Properties
     private GameObject cursor = null;
