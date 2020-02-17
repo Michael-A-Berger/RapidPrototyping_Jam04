@@ -12,6 +12,7 @@ public class WeakEnemy : Enemy
         maxHealth = 3;
         health = 3;
         speed = 1;
+        points = 1;
     }
 
     // Update is called once per frame

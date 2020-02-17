@@ -11,7 +11,8 @@ public class FastEnemy : Enemy
         type = ENEMYTYPE.FAST;
         maxHealth = 2;
         health = 2;
-        speed = 2;        
+        speed = 2;
+        points = 2;
     }
 
     // Update is called once per frame

@@ -12,6 +12,7 @@ public class TankyEnemy : Enemy
         maxHealth = 5;
         health = 5;
         speed = 1;
+        points = 3;
     }
 
     // Update is called once per frame

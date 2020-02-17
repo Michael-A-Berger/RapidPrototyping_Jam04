@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     protected int maxHealth;
     protected int health;
     protected int speed;
+    protected int points;
     protected Vector2 position;
     private GridManager gridManager;
     private WaveSpawner waveSpawner;
@@ -55,7 +56,7 @@ public class Enemy : MonoBehaviour
         //Find next tile to move to and call moveToTile()
     }
 
-    public void damage(int damage)
+    public void damage(int damage, Player player)
     {
         health -= damage;
         if(health > maxHealth)
@@ -64,12 +65,14 @@ public class Enemy : MonoBehaviour
         }
         if(health <= 0)
         {
-            death();
+            death(player);
         }
     }
 
-    protected void death()
+    protected void death(Player player)
     {
+        player.AddMoney(15);
+        player.AddPoints(points);
         waveSpawner.enemiesList.Remove(gameObject);
         Destroy(gameObject,0);
     }

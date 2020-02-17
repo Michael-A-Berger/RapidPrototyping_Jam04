@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PLAYER { PLAYER1, PLAYER2 };
+
 //Base class for all types of towers
 public class Tower : MonoBehaviour
 {
-    public enum PLAYER { PLAYER1, PLAYER2 };
     public enum TOWERTYPE{Arrow,Heal,AOE};
     protected TOWERTYPE type;
     protected PLAYER playerSide;
+    protected Player owner;
     protected int range;
     protected int damage;
     protected int maxTargets;
     protected int attackSpeed;
+    protected int cost;
     protected GridTile position;
     protected GridManager gridManager;
     protected WaveSpawner waveSpawner;
@@ -76,6 +79,6 @@ public class Tower : MonoBehaviour
 
     public void attackEnemy(Enemy enemy, int damage)
     {
-        enemy.damage(damage);
+        enemy.damage(damage, owner);
     }
 }

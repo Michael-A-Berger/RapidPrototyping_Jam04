@@ -13,6 +13,7 @@ public class HealTower : Tower
         maxTargets = 1;
         range = 3;
         attackSpeed = 1;
+        cost = 15;
         attackCooldown = 1.0f;
     }
 
