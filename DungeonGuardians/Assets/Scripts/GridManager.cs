@@ -12,22 +12,23 @@ public class GridManager : MonoBehaviour
 
     // Private Properties
     [SerializeField]
-    private int rows = 16;
+    private int rows = 7;
     [SerializeField]
-    private int cols = 16;
+    private int cols = 15;
     [SerializeField]
     private float tileSize = 1;
     [SerializeField]
     private List<GridTile> tiles = new List<GridTile>();
     private List<GameObject> grid = new List<GameObject>();
-    private List<GameObject> enemyWaypoints = new List<GameObject>();
-    public List<GameObject> EnemyWaypoints { get{ return enemyWaypoints; } }
+    private List<GameObject> enemy1Waypoints = new List<GameObject>();
+    public List<GameObject> Enemy1Waypoints { get{ return enemy1Waypoints; } }
+    private List<GameObject> enemy2Waypoints = new List<GameObject>();
+    public List<GameObject> Enemy2Waypoints { get { return enemy2Waypoints; } }
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateGrid();
-        // Manual Attempt - add to enemy waypoint list
         GenerateEnemyWaypointList();
 
         if (debug)
@@ -66,20 +67,6 @@ public class GridManager : MonoBehaviour
                 tile.transform.position = new Vector2(posX, posY);
 
                 grid.Add(tile);
-
-                // Dynamic Attempt -  add to enemy waypoint list
-                // if (col % 5 == 0 && row % 2 == 0)
-                //{
-                //    enemyWaypoints.Add(tile);
-                //    Debug.Log("Column: " + col + "Row: " + row);
-                //}
-                //else if (col == 15 && row % 2 != 0)
-                //{
-                //    enemyWaypoints.Add(tile);
-                //    Debug.Log("Column: " + col + "Row: " + row);
-                //}
-
-                //// Next step need to be able to reverse the order of a row after the vertical transition tile
             }
         }
 
@@ -95,31 +82,33 @@ public class GridManager : MonoBehaviour
 
     private void GenerateEnemyWaypointList()
     {
-        // testing points
+        Debug.Log(grid.Count);
 
-        enemyWaypoints.Add(grid[0]);
-        enemyWaypoints.Add(grid[15]);
-        enemyWaypoints.Add(grid[75]);
+        // player 1 enemy waypoint list
 
-        //enemyWaypoints.Add(grid[30]);
-        //enemyWaypoints.Add(grid[45]);
-        //enemyWaypoints.Add(grid[40]);
-        //enemyWaypoints.Add(grid[31]);
+        enemy1Waypoints.Add(grid[0]);
+        enemy1Waypoints.Add(grid[15]);
+        enemy1Waypoints.Add(grid[47]);
+        enemy1Waypoints.Add(grid[32]);
+        enemy1Waypoints.Add(grid[64]);
+        enemy1Waypoints.Add(grid[79]);
+        enemy1Waypoints.Add(grid[111]);
+        enemy1Waypoints.Add(grid[96]);
+        enemy1Waypoints.Add(grid[112]);
+        enemy1Waypoints.Add(grid[112]); // --> HACK: random end waypoint that wont be reached but needed to reach the real previous end
 
-        //enemyWaypoints.Add(grid[46]);
-        //enemyWaypoints.Add(grid[61]);
-        //enemyWaypoints.Add(grid[70]);
-        //enemyWaypoints.Add(grid[75]);
+        // player 2 enemy waypoint list
 
-        //enemyWaypoints.Add(grid[105]);
-        //enemyWaypoints.Add(grid[91]);
-        //enemyWaypoints.Add(grid[121]);
-        //enemyWaypoints.Add(grid[135]);
-        //enemyWaypoints.Add(grid[165]);
-        //enemyWaypoints.Add(grid[181]);
-        //enemyWaypoints.Add(grid[225]);
-        //enemyWaypoints.Add(grid[210]);
-        //enemyWaypoints.Add(grid[226]);
+        enemy2Waypoints.Add(grid[15]);
+        enemy2Waypoints.Add(grid[0]);
+        enemy2Waypoints.Add(grid[32]);
+        enemy2Waypoints.Add(grid[47]);
+        enemy2Waypoints.Add(grid[79]);
+        enemy2Waypoints.Add(grid[64]);
+        enemy2Waypoints.Add(grid[96]);
+        enemy2Waypoints.Add(grid[111]);
+        enemy2Waypoints.Add(grid[127]);
+        enemy2Waypoints.Add(grid[127]); // --> Hack: random end waypoint that wont be reached but needed to reach the real previous end
     }
 
     // Update is called once per frame

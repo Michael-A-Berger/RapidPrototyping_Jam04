@@ -5,17 +5,19 @@ using UnityEngine;
 public class TankyEnemy : Enemy
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         type = ENEMYTYPE.TANKY;
+        maxHealth = 5;
         health = 5;
         speed = 1;
         points = 3;
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 }

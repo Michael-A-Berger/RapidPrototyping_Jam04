@@ -304,9 +304,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1064443231}
   - component: {fileID: 1064443230}
+  - component: {fileID: 1064443232}
+  - component: {fileID: 1064443233}
   m_Layer: 0
   m_Name: GridHolder
-  m_TagString: Untagged
+  m_TagString: Grid Holder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,6 +344,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1064443232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064443229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49bc69904891a048b46bf97a2b0e119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy1Prefab: {fileID: 6207517931518438997, guid: dab04db1e74b8684ebe628897031805a,
+    type: 3}
+  enemy2Prefab: {fileID: 1576611401946672791, guid: 960ddb2dbe7ca8d46953989fc6ca187e,
+    type: 3}
+  enemiesList: []
+  timeBetweenWaves: 10
+--- !u!114 &1064443233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064443229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c0bafcc469d05419ab2e09e3ecdcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowTowerPrefab: {fileID: 581527369747084003, guid: 9425c81474d8aed4a974a196e0d27aa5,
+    type: 3}
+  aoeTowerPrefab: {fileID: 581527369747084003, guid: 5187264020ba32b40b4e6bfad0bce930,
+    type: 3}
+  healTowerPrefab: {fileID: 581527369747084003, guid: 769eb26246501ee4aa9e5014846be8b0,
+    type: 3}
 --- !u!1001 &5501595160715454859
 PrefabInstance:
   m_ObjectHideFlags: 0
