@@ -414,6 +414,11 @@ PrefabInstance:
       propertyPath: gridManager
       value: 
       objectReference: {fileID: 1064443230}
+    - target: {fileID: 5501595159505648533, guid: f7c4916c588f6614480ca8f921fc9632,
+        type: 3}
+      propertyPath: playerNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5501595160071740810, guid: f7c4916c588f6614480ca8f921fc9632,
         type: 3}
       propertyPath: m_Mesh

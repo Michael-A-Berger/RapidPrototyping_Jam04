@@ -7,9 +7,8 @@ public class PlayerCursor : MonoBehaviour
 {
     // Public Properties
     public GridManager gridManager = null;
-    [Range(1,4)]
+    [Range(1,2)]
     public int playerNum = 1;
-    public bool usingController = false;
 
     // Private Properties
     private GameObject cursor = null;
