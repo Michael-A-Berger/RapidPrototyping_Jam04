@@ -10,6 +10,7 @@ public class WeakEnemy : Enemy
         type = ENEMYTYPE.WEAK;
         health = 3;
         speed = 1;
+        points = 1;
     }
 
     // Update is called once per frame

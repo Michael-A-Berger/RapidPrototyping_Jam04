@@ -10,6 +10,7 @@ public class TankyEnemy : Enemy
         type = ENEMYTYPE.TANKY;
         health = 5;
         speed = 1;
+        points = 3;
     }
 
     // Update is called once per frame

@@ -9,7 +9,8 @@ public class FastEnemy : Enemy
     {
         type = ENEMYTYPE.FAST;
         health = 2;
-        speed = 2;        
+        speed = 2;
+        points = 2;
     }
 
     // Update is called once per frame

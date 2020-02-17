@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected PLAYER playerside;
     protected int health;
     protected int speed;
+    protected int points;
     protected GridTile position;
     private GridManager gridManager;
     private List<GameObject> waypoints;
@@ -43,17 +44,19 @@ public class Enemy : MonoBehaviour
         //Find next tile to move to and call moveToTile()
     }
 
-    public void damage(int damage)
+    public void damage(int damage, Player player)
     {
         health -= damage;
         if(health <= 0)
         {
-            death();
+            death(player);
         }
     }
 
-    protected void death()
+    protected void death(Player player)
     {
+        player.AddMoney(15);
+        player.AddPoints(points);
     }
 
     // Have enemies walk to waypoints
