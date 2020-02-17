@@ -5,18 +5,20 @@ using UnityEngine;
 public class HealTower : Tower
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         type = TOWERTYPE.Heal;
         damage = -1;
         maxTargets = 1;
         range = 3;
         attackSpeed = 1;
+        attackCooldown = 1.0f;
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 }

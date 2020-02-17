@@ -15,16 +15,19 @@ public class Tower : MonoBehaviour
     protected int attackSpeed;
     protected GridTile position;
     protected GridManager gridManager;
+    protected WaveSpawner waveSpawner;
+    protected float attackCooldown;
+    protected float timeSinceAttack=0;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        waveSpawner = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<WaveSpawner>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        attackEnemiesWithinRange();
     }
 
     public void placeTower(GridTile tile)
@@ -32,18 +35,42 @@ public class Tower : MonoBehaviour
         this.position = tile;
     }
 
+    protected List<Enemy> getEnemiesWithinRange()
+    {
+        List<Enemy> enemiesInRange = new List<Enemy>();
+        List<GameObject> allEnemies = waveSpawner.enemiesList;
+        foreach(GameObject enemy in allEnemies)
+        {
+            Enemy enemyObject = enemy.GetComponent<Enemy>();
+            if(Vector3.Distance(transform.position,enemyObject.transform.position) < range)
+            {
+                enemiesInRange.Add(enemyObject);
+            }
+        }
+        return enemiesInRange;
+    }
+
     public void attackEnemiesWithinRange()
     {
-        int attacksDone = 0;
-        List<Enemy> allEnemies = gridManager.GetEnemiesWithinRange(position, range);
-        foreach(Enemy eachEnemy in allEnemies)
+        if (timeSinceAttack >= attackCooldown)
         {
-            attackEnemy(eachEnemy, damage);
-            attacksDone++;
-            if(attacksDone == maxTargets)
+            timeSinceAttack = 0f;
+            int attacksDone = 0;
+            List<Enemy> validEnemies = getEnemiesWithinRange();
+            Debug.Log("ATTACKING");
+            Debug.Log(validEnemies.Count);
+            foreach (Enemy eachEnemy in validEnemies)
             {
-                break;
+                attackEnemy(eachEnemy, damage);
+                attacksDone++;
+                if (attacksDone == maxTargets)
+                {
+                    break;
+                }
             }
+        } else
+        {
+            timeSinceAttack += Time.deltaTime;
         }
     }
 

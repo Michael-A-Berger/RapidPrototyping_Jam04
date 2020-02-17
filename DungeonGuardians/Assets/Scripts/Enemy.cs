@@ -9,10 +9,12 @@ public class Enemy : MonoBehaviour
     public enum ENEMYTYPE{WEAK,TANKY,FAST};
     protected ENEMYTYPE type;
     protected PLAYER playerside;
+    protected int maxHealth;
     protected int health;
     protected int speed;
     protected Vector2 position;
     private GridManager gridManager;
+    private WaveSpawner waveSpawner;
     private List<GameObject> waypoints;
     private Transform targetWaypoint;
     private int waypointIndex;
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        waveSpawner = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<WaveSpawner>();
         gridManager = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<GridManager>();
         waypointIndex = 0;
         if(this.tag == "Enemy1")
@@ -55,6 +58,10 @@ public class Enemy : MonoBehaviour
     public void damage(int damage)
     {
         health -= damage;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
         if(health <= 0)
         {
             death();
@@ -63,6 +70,8 @@ public class Enemy : MonoBehaviour
 
     protected void death()
     {
+        waveSpawner.enemiesList.Remove(gameObject);
+        Destroy(gameObject,0);
     }
 
     // Have enemies walk to waypoints
@@ -75,7 +84,7 @@ public class Enemy : MonoBehaviour
         }
 
         targetWaypoint = waypoints[waypointIndex].transform;
-        Debug.Log(waypointIndex);
+        //Debug.Log(waypointIndex);
 
         Vector2 dir = (Vector2)(targetWaypoint.position - transform.position);
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);

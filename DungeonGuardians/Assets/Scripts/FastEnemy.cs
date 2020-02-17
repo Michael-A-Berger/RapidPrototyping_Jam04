@@ -9,6 +9,7 @@ public class FastEnemy : Enemy
     {
         base.Start();
         type = ENEMYTYPE.FAST;
+        maxHealth = 2;
         health = 2;
         speed = 2;        
     }

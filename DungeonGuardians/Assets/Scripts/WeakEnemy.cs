@@ -9,6 +9,7 @@ public class WeakEnemy : Enemy
     {
         base.Start();
         type = ENEMYTYPE.WEAK;
+        maxHealth = 3;
         health = 3;
         speed = 1;
     }

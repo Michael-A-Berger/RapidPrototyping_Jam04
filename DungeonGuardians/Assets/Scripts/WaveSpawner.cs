@@ -10,6 +10,7 @@ public class WaveSpawner : MonoBehaviour
     private GridManager gridManager;
     private Transform enemy1SpawnPoint;
     private Transform enemy2SpawnPoint;
+    public List<GameObject> enemiesList;
 
     public float timeBetweenWaves = 10f;
     private float countdown = 2f;
@@ -57,7 +58,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation);
-        Instantiate(enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation);
+        enemiesList.Add(Instantiate(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation));
+        enemiesList.Add(Instantiate(enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation));
     }
 }

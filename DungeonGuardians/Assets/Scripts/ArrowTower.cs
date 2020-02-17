@@ -5,18 +5,20 @@ using UnityEngine;
 public class ArrowTower : Tower
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         type = TOWERTYPE.Arrow;
-        damage = 1;
+        damage = 3;
         maxTargets = 1;
-        range = 3;
+        range = 2;
         attackSpeed = 1;
+        attackCooldown = 1.0f;
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 }

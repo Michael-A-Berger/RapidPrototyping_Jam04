@@ -9,6 +9,7 @@ public class TankyEnemy : Enemy
     {
         base.Start();
         type = ENEMYTYPE.TANKY;
+        maxHealth = 5;
         health = 5;
         speed = 1;
     }
