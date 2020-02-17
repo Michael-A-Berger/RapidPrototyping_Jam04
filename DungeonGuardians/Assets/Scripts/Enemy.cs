@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Base class for all enemy types
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     public enum PLAYER {PLAYER1, PLAYER2 };
     public enum ENEMYTYPE{WEAK,TANKY,FAST};
