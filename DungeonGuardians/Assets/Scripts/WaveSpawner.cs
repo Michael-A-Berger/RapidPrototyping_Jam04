@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject enemy1Prefab;
+    public GameObject enemy2Prefab;
     private GridManager gridManager;
-    private Transform spawnPoint;
+    private Transform enemy1SpawnPoint;
+    private Transform enemy2SpawnPoint;
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 10f;
     private float countdown = 2f;
 
     private int waveNum = 0;
@@ -23,11 +25,12 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnPoint != null)
+        if (enemy1SpawnPoint != null || enemy2SpawnPoint != null)
         {
             if (countdown <= 0f)
             {
                 StartCoroutine(SpawnWave());
+
                 countdown = timeBetweenWaves;
             }
 
@@ -35,8 +38,10 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            spawnPoint = gridManager.EnemyWaypoints[0].transform;
+            enemy1SpawnPoint = gridManager.Enemy1Waypoints[0].transform;
+            enemy2SpawnPoint = gridManager.Enemy2Waypoints[0].transform;
         }
+
     }
 
     IEnumerator SpawnWave()
@@ -52,6 +57,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemy1Prefab, enemy1SpawnPoint.position, enemy1SpawnPoint.rotation);
+        Instantiate(enemy2Prefab, enemy2SpawnPoint.position, enemy2SpawnPoint.rotation);
     }
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid Holder
+  - Enemy1
+  - Enemy2
   - Enemy
   layers:
   - Default
