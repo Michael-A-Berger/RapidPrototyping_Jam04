@@ -69,8 +69,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d12ea06a9f873954391431af5825f38b, type: 3}
-  m_Color: {r: 1, g: 0.6093602, b: 0.72156864, a: 1}
+  m_Sprite: {fileID: -4051886703754803734, guid: 26406fca3a9c92348b43b7f8a5c8d048,
+    type: 3}
+  m_Color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,5 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e1f84e9b484d74ab6f42d474de7a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placedTower: {fileID: 0}
   gridPos: {x: -2147483648, y: -2147483648}
   canPlaceTowers: 1
+  enemiesOnTile: []
