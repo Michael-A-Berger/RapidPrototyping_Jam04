@@ -36,6 +36,8 @@ public abstract class Enemy : MonoBehaviour
     public void Update()
     {
         WalkToWaypoints();
+
+        position = transform.position;
     }
 
     public void moveToTile(GridTile tile)
