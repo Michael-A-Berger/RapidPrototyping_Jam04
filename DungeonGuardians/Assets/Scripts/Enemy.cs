@@ -11,31 +11,40 @@ public class Enemy : MonoBehaviour
     protected PLAYER playerside;
     protected int health;
     protected int speed;
-    protected GridTile position;
+    protected Vector2 position;
     private GridManager gridManager;
     private List<GameObject> waypoints;
     private Transform targetWaypoint;
     private int waypointIndex;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         gridManager = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<GridManager>();
         waypointIndex = 0;
-        waypoints = gridManager.EnemyWaypoints;
+        if(this.tag == "Enemy1")
+        {
+            waypoints = gridManager.Enemy1Waypoints;
+        }
+        if (this.tag == "Enemy2")
+        {
+            waypoints = gridManager.Enemy2Waypoints;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         WalkToWaypoints();
+
+        position = transform.position;
     }
 
     public void moveToTile(GridTile tile)
     {
         //Code stub for animation to move
-        position.enemiesOnTile.Remove(this);
-        tile.enemiesOnTile.Add(this);
+        //position.enemiesOnTile.Remove(this);
+        //tile.enemiesOnTile.Add(this);
     }
 
     public void autoMove()
@@ -59,21 +68,23 @@ public class Enemy : MonoBehaviour
     // Have enemies walk to waypoints
     private void WalkToWaypoints()
     {
+        // reached the last waypoint - lose condition
+        if (waypointIndex >= waypoints.Count - 1)
+        {
+            Destroy(this.gameObject);
+        }
+
         targetWaypoint = waypoints[waypointIndex].transform;
+        Debug.Log(waypointIndex);
 
-        // Debug.Log("Current Waypoint: " + waypointIndex);
-
-        Vector2 dir = new Vector2(targetWaypoint.position.x - transform.position.x, targetWaypoint.position.y - transform.position.y);
+        Vector2 dir = (Vector2)(targetWaypoint.position - transform.position);
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-        if(Vector2.Distance(transform.position, targetWaypoint.position) <= 0.1f)
+        float dist = Vector2.Distance(transform.position, targetWaypoint.position);
+
+        if (dist <= 0.006f) // close enough to move on to next waypoint
         {
             waypointIndex++;
-
-            if(waypointIndex >= waypoints.Count - 1)
-            {
-                Destroy(this.gameObject);
-            }
         }
     }
 }

@@ -5,16 +5,17 @@ using UnityEngine;
 public class FastEnemy : Enemy
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         type = ENEMYTYPE.FAST;
         health = 2;
         speed = 2;        
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 }

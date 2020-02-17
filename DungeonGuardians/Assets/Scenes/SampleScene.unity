@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  rows: 16
+  rows: 8
   cols: 16
   tileSize: 0.55
   tiles: []
@@ -371,7 +371,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49bc69904891a048b46bf97a2b0e119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1576611401946672791, guid: 960ddb2dbe7ca8d46953989fc6ca187e,
+  enemy1Prefab: {fileID: 6207517931518438997, guid: dab04db1e74b8684ebe628897031805a,
+    type: 3}
+  enemy2Prefab: {fileID: 1576611401946672791, guid: 960ddb2dbe7ca8d46953989fc6ca187e,
     type: 3}
   timeBetweenWaves: 5
 --- !u!4 &1082336047
