@@ -9,6 +9,9 @@ TagManager:
   - Enemy2
   - Enemy
   - AudioManager
+  - Light
+  - Camera
+  - UIManager
   layers:
   - Default
   - TransparentFX

@@ -6,8 +6,10 @@ public class Player : MonoBehaviour
 {
     public PLAYER player;
 
-    int points = 0;
-    int money = 15;
+    [HideInInspector]
+    public int points = 0;
+    [HideInInspector]
+    public int money = 15;
 
     float timer = 0.0f;
     bool moneyTick = false;

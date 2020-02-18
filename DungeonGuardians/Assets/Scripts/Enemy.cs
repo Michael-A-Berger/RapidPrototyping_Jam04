@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
 
     protected void death(Player player)
     {
-        player.AddMoney(15);
+        player.AddMoney(5);
         player.AddPoints(points);
         waveSpawner.enemiesList.Remove(gameObject);
         GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Enemy Death");
