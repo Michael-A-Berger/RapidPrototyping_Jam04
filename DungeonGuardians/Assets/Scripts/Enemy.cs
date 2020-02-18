@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     public enum PLAYER {PLAYER1, PLAYER2 };
     public enum ENEMYTYPE{WEAK,TANKY,FAST};
+    public GameObject healthBarHolder;
+    public SpriteRenderer healthBar;
     protected ENEMYTYPE type;
     public PLAYER playerSide;
     protected int maxHealth;
@@ -61,6 +63,9 @@ public class Enemy : MonoBehaviour
     public void damage(int damage, Player player)
     {
         health -= damage;
+
+        UpdateHealthBar();
+
         if(health > maxHealth)
         {
             health = maxHealth;
@@ -69,6 +74,16 @@ public class Enemy : MonoBehaviour
         {
             death(player);
         }
+    }
+
+    public void UpdateHealthBar()
+    {
+        float healthPercent = (float)health / maxHealth;
+        healthBarHolder.transform.localScale = new Vector3(healthPercent, 1, 1);
+        if (healthPercent > 0.5f)
+            healthBar.color = new Color(1f - (healthPercent - 0.5f) / 0.5f, 1f, 0f);
+        else
+            healthBar.color = new Color(1f, (healthPercent / 0.5f), 0f);
     }
 
     protected void death(Player player)
