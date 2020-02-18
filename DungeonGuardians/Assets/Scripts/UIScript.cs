@@ -14,7 +14,7 @@ public class UIScript : MonoBehaviour
     TextMeshPro endText = null;
 
     public float timerMax = 150f;
-    public float timer;
+    float timer;
     bool end;
 
     // Start is called before the first frame update
@@ -57,10 +57,10 @@ public class UIScript : MonoBehaviour
 
                 endTextObj.SetActive(true);
 
-                if (player1.points + player1.money > player2.points + player2.money)
-                    endText.text = "Player 1 wins \n Score: " + (player1.points + player1.money);
-                else if (player2.points + player2.money > player1.points + player1.money)
-                    endText.text = "Player 2 wins \n Score: " + (player2.points + player2.money);
+                if (player1.points > player2.points)
+                    endText.text = "Player 1 wins \n Score: " + (player1.points);
+                else if (player2.points > player1.points)
+                    endText.text = "Player 2 wins \n Score: " + (player2.points);
                 else
                     endText.text = "It's a tie!!!";
             }
