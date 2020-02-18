@@ -95,8 +95,9 @@ public class Enemy : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, targetWaypoint.position);
 
-        if (dist <= 0.006f) // close enough to move on to next waypoint
+        if (dist <= Time.deltaTime * speed) // close enough to start moving on to next waypoint
         {
+            transform.position = targetWaypoint.position;
             waypointIndex++;
         }
     }
