@@ -217,14 +217,21 @@ public class PlayerCursor : MonoBehaviour
         // Clearing the options text
         menuText.text = "";
         for (int num = 0; num < menuItems.Length; num++)
-            if (menuItems[num] != null)
-                menuText.text += "(" + (char)(65 + num) + ") " + menuItems[num].menuName + "\n";
+            if (menuItems[num] != null && playerNum == 1)
+                menuText.text += "(" + (num + 1) + ") " + menuItems[num].menuName + "\n";
+            else if (menuItems[num] != null && playerNum == 2)
+            {
+                if (num + 7 < 10)
+                    menuText.text += "(" + (num + 7) + ") " + menuItems[num].menuName + "\n";
+                else
+                    menuText.text += "(" + (0) + ") " + menuItems[num].menuName + "\n";
+            }
     }
 
     #region Menu Options
     private void Menu_PlaceTowers()
     {
-        Debug.Log("Menu - Place Towers entered!");
+        //Debug.Log("Menu - Place Towers entered!");
         PlayerMenuItem[] newItems = new PlayerMenuItem[4];
         newItems[0] = new PlayerMenuItem {
             menuName = "Arrow",
@@ -248,7 +255,7 @@ public class PlayerCursor : MonoBehaviour
 
     private void Menu_BuffTowers()
     {
-        Debug.Log("Menu - Buff Towers entered!");
+        //Debug.Log("Menu - Buff Towers entered!");
         if (currentTile.placedTower != null)
         {
             if(towerManager.BuffTower(currentTile, player))
@@ -259,7 +266,7 @@ public class PlayerCursor : MonoBehaviour
 
     private void Menu_DebuffTowers()
     {
-        Debug.Log("Menu - Debuff Towers entered!");
+        //Debug.Log("Menu - Debuff Towers entered!");
         if (currentTile.placedTower != null)
         {
             if (towerManager.DebuffTower(currentTile, player))
@@ -269,44 +276,54 @@ public class PlayerCursor : MonoBehaviour
 
     private void Menu_Exit()
     {
-        Debug.Log("Menu - Exit entered!");
+        //Debug.Log("Menu - Exit entered!");
         HideMenu();
         inMenu = false;
     }
 
     private void Submenu_Tower1()
     {
-        Debug.Log("Submenu - Tower 1 entered!");
-        if(currentTile.placedTower == null && currentTile.canPlaceTowers)
+        //Debug.Log("Submenu - Tower 1 entered!");
+        if (currentTile.placedTower == null && currentTile.canPlaceTowers)
         {
             if (towerManager.placeArrowTower(currentTile, player))
+            {
                 Menu_Exit();
+                CreateStartMenu();
+
+            }
         }
     }
 
     private void Submenu_Tower2()
     {
-        Debug.Log("Submenu - Tower 2 entered!");
+        //Debug.Log("Submenu - Tower 2 entered!");
         if (currentTile.placedTower == null && currentTile.canPlaceTowers)
         {
             if (towerManager.placeAoeTower(currentTile, player))
+            {
                 Menu_Exit();
+                CreateStartMenu();
+            }
         }
     }
 
     private void Submenu_Tower3()
     {
-        Debug.Log("Submenu - Tower 3 entered!");
+        //Debug.Log("Submenu - Tower 3 entered!");
         if (currentTile.placedTower == null && currentTile.canPlaceTowers)
         {
-            if(towerManager.placeHealTower(currentTile, player))
+            if (towerManager.placeHealTower(currentTile, player))
+            {
                 Menu_Exit();
+                CreateStartMenu();
+            }
         }
     }
 
     private void Submenu_Back()
     {
-        Debug.Log("Submenu - Back entered!");
+        //Debug.Log("Submenu - Back entered!");
         CreateStartMenu();
     }
     #endregion

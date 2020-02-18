@@ -59,8 +59,8 @@ public class Tower : MonoBehaviour
             timeSinceAttack = 0f;
             int attacksDone = 0;
             List<Enemy> validEnemies = getEnemiesWithinRange();
-            Debug.Log("ATTACKING");
-            Debug.Log(validEnemies.Count);
+            //Debug.Log("ATTACKING");
+            //Debug.Log(validEnemies.Count);
             foreach (Enemy eachEnemy in validEnemies)
             {
                 //if((int)eachEnemy.playerSide != (int)playerSide)

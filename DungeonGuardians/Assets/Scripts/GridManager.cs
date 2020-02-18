@@ -82,7 +82,7 @@ public class GridManager : MonoBehaviour
 
     private void GenerateEnemyWaypointList()
     {
-        Debug.Log(grid.Count);
+        //Debug.Log(grid.Count);
 
         // player 1 enemy waypoint list
 

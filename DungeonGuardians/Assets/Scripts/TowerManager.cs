@@ -14,17 +14,11 @@ public class TowerManager : MonoBehaviour
     public int healTowerCost;
 
     private GridManager gridManager;
-    private bool test = false;
+    //private bool test = false;
     // Start is called before the first frame update
     void Start()
     {
         gridManager = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<GridManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public bool placeArrowTower(GridTile tile, Player owner)
