@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     protected Vector2 position;
     private GridManager gridManager;
     private WaveSpawner waveSpawner;
+    private UIScript uiScript;
     private List<GameObject> waypoints;
     private Transform targetWaypoint;
     private int waypointIndex;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         waveSpawner = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<WaveSpawner>();
         gridManager = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<GridManager>();
+        uiScript = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIScript>();
         waypointIndex = 0;
         if(this.tag == "Enemy1")
         {
@@ -85,6 +87,7 @@ public class Enemy : MonoBehaviour
         if (waypointIndex >= waypoints.Count - 1)
         {
             Destroy(this.gameObject);
+            uiScript.AllPlayersLose();
         }
 
         targetWaypoint = waypoints[waypointIndex].transform;

@@ -16,6 +16,7 @@ public class UIScript : MonoBehaviour
     public float timerMax = 150f;
     float timer;
     bool end;
+    bool playersLost = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class UIScript : MonoBehaviour
             p2Text.text = "- " + player2.money;
 
             timer += Time.deltaTime;
-            if (timer >= timerMax)
+            if (timer >= timerMax || playersLost)
             {
                 end = true;
 
@@ -61,10 +62,18 @@ public class UIScript : MonoBehaviour
                     endText.text = "Player 1 wins \n Score: " + (player1.points);
                 else if (player2.points > player1.points)
                     endText.text = "Player 2 wins \n Score: " + (player2.points);
-                else
+                else if (!playersLost)
                     endText.text = "It's a tie!!!";
+                else
+                    endText.text = "You Lose";
             }
         }
 
+    }
+
+    // AllPlayersLose()
+    public void AllPlayersLose()
+    {
+        playersLost = true;
     }
 }
