@@ -13,7 +13,6 @@ public class ArrowTower : Tower
         maxTargets = 1;
         range = 2;
         attackSpeed = 1;
-        cost = 15;
         attackCooldown = 1.0f;
     }
 

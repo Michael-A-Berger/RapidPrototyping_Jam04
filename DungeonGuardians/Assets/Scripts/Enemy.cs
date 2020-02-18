@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public enum PLAYER {PLAYER1, PLAYER2 };
     public enum ENEMYTYPE{WEAK,TANKY,FAST};
     protected ENEMYTYPE type;
-    protected PLAYER playerside;
+    public PLAYER playerSide;
     protected int maxHealth;
     protected int health;
     protected int speed;

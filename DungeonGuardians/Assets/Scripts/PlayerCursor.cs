@@ -7,8 +7,10 @@ public class PlayerCursor : MonoBehaviour
 {
     // Public Properties
     public GridManager gridManager = null;
+    public TowerManager towerManager = null;
     [Range(1,2)]
     public int playerNum = 1;
+    public Player player;
 
     // Private Properties
     private GameObject cursor = null;
@@ -38,6 +40,8 @@ public class PlayerCursor : MonoBehaviour
         {
             Debug.LogError("\"gridManager\" was not set!");
         }
+
+        towerManager = FindObjectOfType<TowerManager>();
 
         // Getting the child game object + components
         cursor = transform.Find("Cursor").gameObject;
@@ -221,16 +225,21 @@ public class PlayerCursor : MonoBehaviour
     private void Menu_PlaceTowers()
     {
         Debug.Log("Menu - Place Towers entered!");
-        PlayerMenuItem[] newItems = new PlayerMenuItem[3];
+        PlayerMenuItem[] newItems = new PlayerMenuItem[4];
         newItems[0] = new PlayerMenuItem {
-            menuName = "Tower1",
+            menuName = "Arrow",
             select = Submenu_Tower1
         };
         newItems[1] = new PlayerMenuItem {
-            menuName = "Tower2",
+            menuName = "AOE",
             select = Submenu_Tower2
         };
         newItems[2] = new PlayerMenuItem {
+            menuName = "Heal",
+            select = Submenu_Tower3
+        };
+        newItems[3] = new PlayerMenuItem
+        {
             menuName = "Back",
             select = Submenu_Back
         };
@@ -240,11 +249,22 @@ public class PlayerCursor : MonoBehaviour
     private void Menu_BuffTowers()
     {
         Debug.Log("Menu - Buff Towers entered!");
+        if (currentTile.placedTower != null)
+        {
+            if(towerManager.BuffTower(currentTile, player))
+                Menu_Exit();
+        }
+            
     }
 
     private void Menu_DebuffTowers()
     {
         Debug.Log("Menu - Debuff Towers entered!");
+        if (currentTile.placedTower != null)
+        {
+            if (towerManager.DebuffTower(currentTile, player))
+                Menu_Exit();
+        }
     }
 
     private void Menu_Exit()
@@ -257,11 +277,31 @@ public class PlayerCursor : MonoBehaviour
     private void Submenu_Tower1()
     {
         Debug.Log("Submenu - Tower 1 entered!");
+        if(currentTile.placedTower == null && currentTile.canPlaceTowers)
+        {
+            if (towerManager.placeArrowTower(currentTile, player))
+                Menu_Exit();
+        }
     }
 
     private void Submenu_Tower2()
     {
         Debug.Log("Submenu - Tower 2 entered!");
+        if (currentTile.placedTower == null && currentTile.canPlaceTowers)
+        {
+            if (towerManager.placeAoeTower(currentTile, player))
+                Menu_Exit();
+        }
+    }
+
+    private void Submenu_Tower3()
+    {
+        Debug.Log("Submenu - Tower 3 entered!");
+        if (currentTile.placedTower == null && currentTile.canPlaceTowers)
+        {
+            if(towerManager.placeHealTower(currentTile, player))
+                Menu_Exit();
+        }
     }
 
     private void Submenu_Back()

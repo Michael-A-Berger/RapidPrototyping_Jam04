@@ -9,13 +9,12 @@ public class Tower : MonoBehaviour
 {
     public enum TOWERTYPE{Arrow,Heal,AOE};
     protected TOWERTYPE type;
-    protected PLAYER playerSide;
-    protected Player owner;
+    public PLAYER playerSide;
+    public Player owner;
     protected int range;
     protected int damage;
     protected int maxTargets;
     protected int attackSpeed;
-    protected int cost;
     protected GridTile position;
     protected GridManager gridManager;
     protected WaveSpawner waveSpawner;
@@ -64,12 +63,15 @@ public class Tower : MonoBehaviour
             Debug.Log(validEnemies.Count);
             foreach (Enemy eachEnemy in validEnemies)
             {
+                //if((int)eachEnemy.playerSide != (int)playerSide)
+                //{
                 attackEnemy(eachEnemy, damage);
                 attacksDone++;
                 if (attacksDone == maxTargets)
                 {
                     break;
                 }
+                //}
             }
         } else
         {
@@ -80,5 +82,18 @@ public class Tower : MonoBehaviour
     public void attackEnemy(Enemy enemy, int damage)
     {
         enemy.damage(damage, owner);
+    }
+
+    public void BuffTower()
+    {
+        range += 1;
+        attackCooldown -= 1.0f;
+        if (attackCooldown < 1.0f) attackCooldown = 1.0f;
+    }
+    public void DebuffTower()
+    {
+        range -= 1;
+        if (range < 1) range = 1;
+        attackCooldown += 1.0f;
     }
 }

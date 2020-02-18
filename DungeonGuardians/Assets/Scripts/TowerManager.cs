@@ -8,6 +8,11 @@ public class TowerManager : MonoBehaviour
     public GameObject arrowTowerPrefab;
     public GameObject aoeTowerPrefab;
     public GameObject healTowerPrefab;
+
+    public int arrowTowerCost;
+    public int aoeTowerCost;
+    public int healTowerCost;
+
     private GridManager gridManager;
     private bool test = false;
     // Start is called before the first frame update
@@ -19,32 +24,56 @@ public class TowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!test)
-        {
-            GridTile tile = gridManager.GetGridTileAtPos(3, 3);
-            Instantiate(arrowTowerPrefab, tile.transform.position, tile.transform.rotation);
-            tile = gridManager.GetGridTileAtPos(6, 6);
-            Instantiate(healTowerPrefab, tile.transform.position, tile.transform.rotation);
-            tile = gridManager.GetGridTileAtPos(8, 2);
-            Instantiate(aoeTowerPrefab, tile.transform.position, tile.transform.rotation);
-            test = true;
-        }
+
     }
 
-    public void placeArrowTower(GridTile tile)
+    public bool placeArrowTower(GridTile tile, Player owner)
     {
-        Instantiate(arrowTowerPrefab, tile.transform.position, tile.transform.rotation);
+        if (!owner.SpendMoney(arrowTowerCost)) return false;
+        Vector3 pos = tile.transform.position;
+        pos.z -= 0.5f;
+        GameObject tower = Instantiate(arrowTowerPrefab, pos, tile.transform.rotation);
+        tower.GetComponent<Tower>().owner = owner;
+        tower.GetComponent<Tower>().playerSide = owner.player;
+        tile.placedTower = tower;
+        return true;
     }
 
-    public void placeAoeTower(GridTile tile)
+    public bool placeAoeTower(GridTile tile, Player owner)
     {
-        Instantiate(aoeTowerPrefab, tile.transform.position, tile.transform.rotation);
+        if (!owner.SpendMoney(aoeTowerCost)) return false;
+        Vector3 pos = tile.transform.position;
+        pos.z -= 0.5f;
+        GameObject tower = Instantiate(aoeTowerPrefab, pos, tile.transform.rotation);
+        tower.GetComponent<Tower>().owner = owner;
+        tower.GetComponent<Tower>().playerSide = owner.player;
+        tile.placedTower = tower;
+        return true;
     }
 
-    public void placeHealTower(GridTile tile)
+    public bool placeHealTower(GridTile tile, Player owner)
     {
-        Instantiate(healTowerPrefab, tile.transform.position, tile.transform.rotation);
+        if (!owner.SpendMoney(healTowerCost)) return false;
+        Vector3 pos = tile.transform.position;
+        pos.z -= 0.5f;
+        GameObject tower = Instantiate(healTowerPrefab, pos, tile.transform.rotation);
+        tower.GetComponent<Tower>().owner = owner;
+        tower.GetComponent<Tower>().playerSide = owner.player;
+        tile.placedTower = tower;
+        return true;
     }
 
+    public bool BuffTower(GridTile tile, Player owner)
+    {
+        if (!owner.SpendMoney(10)) return false;
+        tile.placedTower.GetComponent<Tower>().BuffTower();
+        return true;
+    }
 
+    public bool DebuffTower(GridTile tile, Player owner)
+    {
+        if (!owner.SpendMoney(10)) return false;
+        tile.placedTower.GetComponent<Tower>().DebuffTower();
+        return true;
+    }
 }

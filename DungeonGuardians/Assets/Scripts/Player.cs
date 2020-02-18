@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
     public PLAYER player;
 
     int points = 0;
-    int money = 0;
+    int money = 15;
+
+    float timer = 0.0f;
+    bool moneyTick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +21,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (moneyTick && timer >= 5.0f)
+        {
+            AddMoney(2);
+            timer = 0.0f;
+        }
+        if (!moneyTick && timer >= 10.0f) 
+        {
+            moneyTick = true;
+            timer = 0.0f;
+        }
     }
 
     public void AddPoints(int pts)
