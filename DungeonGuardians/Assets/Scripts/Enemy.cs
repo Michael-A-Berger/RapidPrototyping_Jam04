@@ -23,8 +23,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        waveSpawner = GameObject.FindGameObjectWithTag("GridHolder").GetComponent<WaveSpawner>();
-        gridManager = GameObject.FindGameObjectWithTag("GridHolder").GetComponent<GridManager>();
+        waveSpawner = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<WaveSpawner>();
+        gridManager = GameObject.FindGameObjectWithTag("Grid Holder").GetComponent<GridManager>();
         waypointIndex = 0;
         if(this.tag == "Enemy1")
         {
